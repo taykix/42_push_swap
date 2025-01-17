@@ -31,18 +31,18 @@ int main(int argc, char **argv)
         i++;
     }
 
-    printf("Stack A contents: \n");
-    print_stack(&stackA);
+    print_current_state(&stackA, &stackB);
+    printf("\n\nSORTING ALGORITHM\n\n");
+    sort_three(&stackA);
+    print_current_state(&stackA, &stackB);
 
     // Example operations
-    if(is_sorted(&stackA))
-    {
+    if (is_sorted(&stackA)) {
         printf("Stack is sorted\n");
-    } else
-        printf("Stack is not sorted\n");
+    }
 
-    // Free both stacks
     free_stack(&stackA);
+    free_stack(&stackB);
 
     return EXIT_SUCCESS;
 }

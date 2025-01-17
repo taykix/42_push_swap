@@ -10,13 +10,17 @@ typedef struct Node {
     int data;
     struct Node* next;
     struct Node* prev;
+    struct Node* target;
+    int index;
+    int is_above_median;
+    int push_cost;
 } t_node;
 
 // Stack structure
 typedef struct Stack {
     t_node* head; // Pointer to the top of the stack
     t_node* tail; // Pointer to the bottom of the stack
-    int element_count; // Number of elements in the stack
+    int element_count;
 } t_stack;
 
 // Function prototypes
@@ -36,5 +40,7 @@ void rotate(t_stack* stack);
 void reverse_rotate(t_stack* stack);
 int delete_head(t_stack* stack);
 int is_sorted(t_stack* stack);
+void print_current_state(t_stack* stackA, t_stack* stackB);
+void sort_three(t_stack* stack);
 
 #endif

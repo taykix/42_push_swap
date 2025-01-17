@@ -16,3 +16,10 @@ int validate_and_convert(const char* arg) {
 
     return (int)value;
 }
+
+void print_current_state(t_stack* stackA, t_stack* stackB) {
+    printf("Stack A contents: \n");
+    print_stack(stackA);
+    printf("Stack B contents: \n");
+    print_stack(stackB);
+}
