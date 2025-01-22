@@ -70,6 +70,26 @@ void set_target_a(t_stack* stackA, t_stack* stackB)
     }
 }
 
+void cost_analysis_a(t_stack* stackA, t_stack* stackB)
+{
+    t_node* tempA;
+    t_node* tempB;
+    int cost;
+
+    tempA = stackA->head;
+    while(tempA)
+    {
+        tempA->push_cost = tempA->index;
+        if(!(tempA->is_above_median))
+            tempA->push_cost = stackA->element_count - tempA->index;
+        if (tempA->target->is_above_median)
+            tempA->push_cost += tempA->target->index;
+        else
+            tempA->push_cost += stackB->element_count - tempA->target->index;
+        tempA = tempA->next;
+    }
+}
+
 t_node* find_max(t_stack* stack)
 {
     t_node* temp;

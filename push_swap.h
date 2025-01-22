@@ -13,6 +13,7 @@ typedef struct Node {
     struct Node* target;
     int index;
     int is_above_median;
+    int is_cheapest;
     int push_cost;
 } t_node;
 
@@ -45,5 +46,7 @@ void sort_three(t_stack* stack);
 void set_indexes(t_stack* stack);
 void set_target_a(t_stack* stackA, t_stack* stackB);
 t_node* find_max(t_stack* stack);
+void cost_analysis_a(t_stack* stackA, t_stack* stackB);
+void set_cheapest(t_stack* stack);
 
 #endif
