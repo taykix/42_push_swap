@@ -30,10 +30,13 @@ int main(int argc, char **argv)
         }
         i++;
     }
-
-    print_current_state(&stackA, &stackB);
-    printf("\n\nSORTING ALGORITHM\n\n");
-    sort_three(&stackA);
+    push_to(&stackB, &stackA);
+    push_to(&stackB, &stackA);
+    push_to(&stackB, &stackA);
+    push_to(&stackB, &stackA);
+    set_indexes(&stackA);
+    set_indexes(&stackB);
+    set_target_a(&stackA, &stackB);
     print_current_state(&stackA, &stackB);
 
     // Example operations

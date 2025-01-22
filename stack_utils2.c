@@ -29,21 +29,11 @@ int pop(t_stack* stack)
     return popped_value;
 }
 
-void print_stack(t_stack* stack)
-{
-    t_node* temp = stack->head;
-    printf("Stack contents: ");
-    while (temp != NULL) {
-        printf("%d -> ", temp->data);
-        temp = temp->next;
-    }
-    printf("NULL\n");
-    printf("Total elements: %d\n", stack->element_count);
-}
-
 void free_stack(t_stack* stack)
 {
     while (!is_empty(stack)) {
         delete_head(stack);
     }
 }
+
+

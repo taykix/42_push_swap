@@ -18,8 +18,8 @@ typedef struct Node {
 
 // Stack structure
 typedef struct Stack {
-    t_node* head; // Pointer to the top of the stack
-    t_node* tail; // Pointer to the bottom of the stack
+    t_node* head;
+    t_node* tail;
     int element_count;
 } t_stack;
 
@@ -42,5 +42,8 @@ int delete_head(t_stack* stack);
 int is_sorted(t_stack* stack);
 void print_current_state(t_stack* stackA, t_stack* stackB);
 void sort_three(t_stack* stack);
+void set_indexes(t_stack* stack);
+void set_target_a(t_stack* stackA, t_stack* stackB);
+t_node* find_max(t_stack* stack);
 
 #endif
