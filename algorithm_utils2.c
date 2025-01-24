@@ -37,3 +37,48 @@ t_node* get_cheapest(t_stack* stack)
 	}
 	return NULL;
 }
+
+void set_target_b(t_stack* stackB, t_stack* stackA)
+{
+    t_node* tempA;
+    t_node* tempB;
+    t_node* target;
+    long     best_match;
+
+    tempB = stackB->head;
+    while(tempB)
+    {
+        tempA = stackA->head;
+        best_match = LONG_MAX;
+        while(tempA)
+        {
+            if(tempA->data > tempB->data && tempA->data < best_match) //closeset bigest
+            {
+                best_match = tempA->data;
+                target = tempA;
+            }
+            tempA = tempA->next;
+        }
+        if (best_match == LONG_MAX)
+            tempB->target = find_min(stackA);
+        else
+            tempB->target = target;
+        tempB = tempB->next;
+    }
+}
+
+t_node* find_min(t_stack* stack)
+{
+    t_node* temp;
+    t_node* min;
+
+    temp = stack->head;
+    min = temp;
+    while(temp)
+    {
+        if(temp->data < min->data)
+            min = temp;
+        temp = temp->next;
+    }
+    return min;
+}

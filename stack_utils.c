@@ -9,6 +9,11 @@ t_node* create_node(int data)
     newNode->data = data;
     newNode->next = NULL;
     newNode->prev = NULL;
+    newNode->target = NULL;
+    newNode->index = -1;
+    newNode->is_above_median = -1;
+    newNode->is_cheapest = 0;
+    newNode->push_cost = -1;
     return newNode;
 }
 

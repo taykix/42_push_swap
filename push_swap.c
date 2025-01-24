@@ -30,13 +30,7 @@ int main(int argc, char **argv)
         }
         i++;
     }
-    push_to(&stackB, &stackA);
-    push_to(&stackB, &stackA);
-    push_to(&stackB, &stackA);
-    push_to(&stackB, &stackA);
-    set_indexes(&stackA);
-    set_indexes(&stackB);
-    set_target_a(&stackA, &stackB);
+    sort_big(&stackA, &stackB);
     print_current_state(&stackA, &stackB);
 
     // Example operations

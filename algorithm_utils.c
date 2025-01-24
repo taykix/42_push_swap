@@ -3,19 +3,21 @@
 int   is_sorted(t_stack* stack)
 {
     int min;
+    t_node* temp;
 
     if(stack->element_count < 2)
         return 1;
-    min = stack->head->data;
-    stack->head = stack->head->next;
-    while(stack->head)
+    temp = stack->head;
+    min = temp->data;
+    temp = temp->next;
+    while(temp)
     {
-        if(stack->head->data < min)
+        if(temp->data < min)
         {
             return 0;
         }
-        min = stack->head->data;
-        stack->head = stack->head->next;
+        min = temp->data;
+        temp = temp->next;
     }
     return 1;
 }
@@ -73,8 +75,6 @@ void set_target_a(t_stack* stackA, t_stack* stackB)
 void cost_analysis_a(t_stack* stackA, t_stack* stackB)
 {
     t_node* tempA;
-    t_node* tempB;
-    int cost;
 
     tempA = stackA->head;
     while(tempA)

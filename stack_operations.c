@@ -31,6 +31,8 @@ void push_to(t_stack* dest, t_stack* src)
 
     int value = pop(src);
     push(dest, value);
+    set_indexes(dest);
+    set_indexes(src);
 }
 
 void rotate(t_stack* stack)

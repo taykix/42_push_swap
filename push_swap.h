@@ -45,8 +45,18 @@ void print_current_state(t_stack* stackA, t_stack* stackB);
 void sort_three(t_stack* stack);
 void set_indexes(t_stack* stack);
 void set_target_a(t_stack* stackA, t_stack* stackB);
+void set_target_b(t_stack* stackB, t_stack* stackA);
 t_node* find_max(t_stack* stack);
+t_node* find_min(t_stack* stack);
 void cost_analysis_a(t_stack* stackA, t_stack* stackB);
 void set_cheapest(t_stack* stack);
+void reset_cheapest(t_stack* stack);
+t_node* get_cheapest(t_stack* stack);
+void economic_rotate(t_stack* stackA, t_stack* stackB);
+int rotate_node_to_top(t_stack* stack,t_node* node, char stack_name);
+void get_stack_ready(t_stack* stackA, t_stack* stackB, char stack_name);
+void nodes_a_to_b(t_stack* stackA, t_stack* stackB);
+void nodes_b_to_a(t_stack* stackA, t_stack* stackB);
+void sort_big(t_stack* stackA, t_stack* stackB);
 
 #endif
