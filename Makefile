@@ -26,10 +26,12 @@ $(TARGET):	$(OBJS)
 clean:
 	rm -f $(OBJS) $(TARGET)
 	$(MAKE) -C $(LIBFT_DIR) clean
+    $(MAKE) -C $(FT_PRINTF_DIR) clean
 
 fclean:	clean
 	rm -f $(TARGET)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+    $(MAKE) -C $(FT_PRINTF_DIR) fclean
 
 re: fclean all
 
