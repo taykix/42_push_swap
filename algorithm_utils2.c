@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm_utils2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/24 19:32:44 by tayki             #+#    #+#             */
+/*   Updated: 2025/01/24 19:37:19 by tayki            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void set_cheapest(t_stack* stack)
+void	set_cheapest(t_stack *stack)
 {
-	t_node* temp;
-	t_node* cheapest_node;
-	long     cheapest_value;
+	t_node	*temp;
+	t_node	*cheapest_node;
+	long	cheapest_value;
 
-	if(!stack)
-		return;
+	if (!stack)
+		return ;
 	temp = stack->head;
 	cheapest_value = LONG_MAX;
-	while(temp)
+	while (temp)
 	{
 		if (temp->push_cost < cheapest_value)
 		{
@@ -22,63 +34,63 @@ void set_cheapest(t_stack* stack)
 	cheapest_node->is_cheapest = 1;
 }
 
-t_node* get_cheapest(t_stack* stack)
+t_node	*get_cheapest(t_stack *stack)
 {
-	t_node* temp;
+	t_node	*temp;
 
-	if(!stack)
-		return NULL;
+	if (!stack)
+		return (NULL);
 	temp = stack->head;
-	while(temp)
+	while (temp)
 	{
 		if (temp->is_cheapest)
-			return temp;
+			return (temp);
 		temp = temp->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
-void set_target_b(t_stack* stackB, t_stack* stackA)
+void	set_target_b(t_stack *stack_b, t_stack *stack_a)
 {
-    t_node* tempA;
-    t_node* tempB;
-    t_node* target;
-    long     best_match;
+	t_node	*temp_a;
+	t_node	*temp_b;
+	t_node	*target;
+	long	best_match;
 
-    tempB = stackB->head;
-    while(tempB)
-    {
-        tempA = stackA->head;
-        best_match = LONG_MAX;
-        while(tempA)
-        {
-            if(tempA->data > tempB->data && tempA->data < best_match) //closeset bigest
-            {
-                best_match = tempA->data;
-                target = tempA;
-            }
-            tempA = tempA->next;
-        }
-        if (best_match == LONG_MAX)
-            tempB->target = find_min(stackA);
-        else
-            tempB->target = target;
-        tempB = tempB->next;
-    }
+	temp_b = stack_b->head;
+	while (temp_b)
+	{
+		temp_a = stack_a->head;
+		best_match = LONG_MAX;
+		while (temp_a)
+		{
+			if (temp_a->data > temp_b->data && temp_a->data < best_match)
+			{
+				best_match = temp_a->data;
+				target = temp_a;
+			}
+			temp_a = temp_a->next;
+		}
+		if (best_match == LONG_MAX)
+			temp_b->target = find_min(stack_a);
+		else
+			temp_b->target = target;
+		temp_b = temp_b->next;
+	}
 }
 
-t_node* find_min(t_stack* stack)
+t_node	*find_min(t_stack *stack)
 {
-    t_node* temp;
-    t_node* min;
+	t_node	*temp;
+	t_node	*min;
 
-    temp = stack->head;
-    min = temp;
-    while(temp)
-    {
-        if(temp->data < min->data)
-            min = temp;
-        temp = temp->next;
-    }
-    return min;
+	temp = stack->head;
+	min = temp;
+	while (temp)
+	{
+		if (temp->data < min->data)
+			min = temp;
+		temp = temp->next;
+	}
+	return (min);
 }

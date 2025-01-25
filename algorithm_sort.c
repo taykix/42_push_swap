@@ -1,56 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algorithm_sort.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/24 19:32:28 by tayki             #+#    #+#             */
+/*   Updated: 2025/01/24 23:01:00 by tayki            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void sort_three(t_stack* stack) {
-    int first = stack->head->data;
-    int second = stack->head->next->data;
-    int third = stack->head->next->next->data;
-
-    if (first > second && second < third && first < third) {
-        swap(stack);
-        printf("sa\n");
-    } else if (first > second && second > third && first > third) {
-        swap(stack);
-        printf("sa\n");
-        reverse_rotate(stack);
-        printf("rra\n");
-    } else if (first > second && second < third && first > third) {
-        rotate(stack);
-        printf("ra\n");
-    } else if (first < second && second > third && first < third) {
-        swap(stack);
-        printf("sa\n");
-        rotate(stack);
-        printf("ra\n");
-    } else if (first < second && second > third && first > third) {
-        reverse_rotate(stack);
-        printf("rra\n");
-    }
+void	sort_three(t_stack *stack)
+{
+	if (stack->head == find_max(stack))
+	{
+		rotate(stack);
+		printf("ra\n");
+	}
+	else if (stack->head->next == find_max(stack))
+	{
+		reverse_rotate(stack);
+		printf("rra\n");
+	}
+	if (!is_sorted(stack))
+	{
+		swap(stack);
+		printf("sa\n");
+	}
 }
 
-void sort_big(t_stack* stackA, t_stack* stackB) {
-    
-    if(stackA->element_count > 3 && !is_sorted(stackA))
-    {
-        push_to(stackB, stackA);
-        printf("pb\n");
-    }
-    if(stackA->element_count > 3 && !is_sorted(stackA))
-    {
-        push_to(stackB, stackA);
-        printf("pb\n");
-    }
-    while (stackA->element_count > 3 && !is_sorted(stackA))
-    {
-        get_stack_ready(stackA, stackB, 'a');
-        nodes_a_to_b(stackA, stackB);
-    }
-    if (!is_sorted(stackA) && stackA->element_count == 3)
-        sort_three(stackA);
-    while (stackB->element_count > 0)
-    {
-        get_stack_ready(stackA, stackB, 'b');
-        nodes_b_to_a(stackA, stackB);
-    }
-    set_indexes(stackA);
-    rotate_node_to_top(stackA, find_min(stackA), 'a');
+void	sort_big(t_stack *stack_a, t_stack *stack_b)
+{
+	if (stack_a->element_count > 3 && !is_sorted(stack_a))
+	{
+		push_to(stack_b, stack_a);
+		printf("pb\n");
+	}
+	if (stack_a->element_count > 3 && !is_sorted(stack_a))
+	{
+		push_to(stack_b, stack_a);
+		printf("pb\n");
+	}
+	while (stack_a->element_count > 3 && !is_sorted(stack_a))
+	{
+		get_stack_ready(stack_a, stack_b, 'a');
+		nodes_a_to_b(stack_a, stack_b);
+	}
+	if (!is_sorted(stack_a) && stack_a->element_count == 3)
+		sort_three(stack_a);
+	while (stack_b->element_count > 0)
+	{
+		get_stack_ready(stack_a, stack_b, 'b');
+		nodes_b_to_a(stack_a, stack_b);
+	}
+	set_indexes(stack_a);
+	rotate_node_to_top(stack_a, find_min(stack_a), 'a');
 }
