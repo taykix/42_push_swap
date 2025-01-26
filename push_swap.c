@@ -6,7 +6,7 @@
 /*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:32:58 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 22:57:20 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/25 18:18:19 by tayki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		fprintf(stderr, "Usage: %s <integers>\n", argv[0]);
+		ft_printf("Error\n");
 		return (EXIT_FAILURE);
 	}
 	init_stack(&stack_a);
 	init_stack(&stack_b);
-	i = 1;
-	while (i < argc)
+	i = argc - 1;
+	while (i > 0)
 	{
 		value = validate_and_convert(argv[i]);
 		if (!is_duplicate(&stack_a, value))
@@ -38,18 +38,14 @@ int	main(int argc, char **argv)
 		}
 		else
 		{
-			fprintf(stderr, "Error: Duplicate value detected (%d)\n", value);
+			ft_printf("Error\n");
 			free_stack(&stack_a);
 			free_stack(&stack_b);
 			return (EXIT_FAILURE);
 		}
-		i++;
+		i--;
 	}
 	sort_big(&stack_a, &stack_b);
-	if (is_sorted(&stack_a))
-	{
-		printf("Stack is sorted\n");
-	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (EXIT_SUCCESS);

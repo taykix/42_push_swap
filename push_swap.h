@@ -6,14 +6,15 @@
 /*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:35:18 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 22:44:37 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/25 15:38:27 by tayki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include "ft_printf/libft/libft.h"
+# include "ft_printf/ft_printf.h"
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>

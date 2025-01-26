@@ -6,7 +6,7 @@
 /*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:33:08 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 19:33:09 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/25 18:16:07 by tayki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	push(t_stack *stack, int data)
 {
 	if (is_duplicate(stack, data))
 	{
-		printf("Error: Duplicate value detected (%d)\n", data);
+		ft_printf("Error: Duplicate value detected (%d)\n", data);
 		return ;
 	}
 	if (insert_before_head(stack, data) == -1)
 	{
-		printf("Error: Memory allocation failed\n");
+		ft_printf("Error: Memory allocation failed\n");
 	}
 }
 
@@ -36,7 +36,7 @@ int	pop(t_stack *stack)
 
 	if (is_empty(stack))
 	{
-		printf("Stack Underflow\n");
+		ft_printf("Stack Underflow\n");
 		return (-1);
 	}
 	popped_value = stack->head->data;

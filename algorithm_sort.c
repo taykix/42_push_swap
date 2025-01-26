@@ -6,7 +6,7 @@
 /*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:32:28 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 23:01:00 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/25 18:15:57 by tayki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	sort_three(t_stack *stack)
 	if (stack->head == find_max(stack))
 	{
 		rotate(stack);
-		printf("ra\n");
+		ft_printf("ra\n");
 	}
 	else if (stack->head->next == find_max(stack))
 	{
 		reverse_rotate(stack);
-		printf("rra\n");
+		ft_printf("rra\n");
 	}
 	if (!is_sorted(stack))
 	{
 		swap(stack);
-		printf("sa\n");
+		ft_printf("sa\n");
 	}
 }
 
@@ -36,12 +36,12 @@ void	sort_big(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->element_count > 3 && !is_sorted(stack_a))
 	{
 		push_to(stack_b, stack_a);
-		printf("pb\n");
+		ft_printf("pb\n");
 	}
 	if (stack_a->element_count > 3 && !is_sorted(stack_a))
 	{
 		push_to(stack_b, stack_a);
-		printf("pb\n");
+		ft_printf("pb\n");
 	}
 	while (stack_a->element_count > 3 && !is_sorted(stack_a))
 	{

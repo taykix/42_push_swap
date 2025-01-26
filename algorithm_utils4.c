@@ -6,7 +6,7 @@
 /*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 23:01:41 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 23:05:09 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/25 18:16:03 by tayki            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	rotate_node_to_top(t_stack *stack, t_node *node_for_top, char stack_name)
 		if (node->is_above_median)
 		{
 			rotate(stack);
-			printf("r");
+			ft_printf("r");
 		}
 		else
 		{
 			reverse_rotate(stack);
-			printf("rr");
+			ft_printf("rr");
 		}
-		printf("%c\n", stack_name);
+		ft_printf("%c\n", stack_name);
 		set_indexes(stack);
 	}
 	if (node->index == 0)
