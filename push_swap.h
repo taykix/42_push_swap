@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:35:18 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/25 15:38:27 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/26 18:36:27 by tkarakay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "ft_printf/libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include "ft_printf/libft/libft.h"
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -76,5 +76,8 @@ void			get_stack_ready(t_stack *stack_a, t_stack *stack_b,
 void			nodes_a_to_b(t_stack *stack_a, t_stack *stack_b);
 void			nodes_b_to_a(t_stack *stack_a, t_stack *stack_b);
 void			sort_big(t_stack *stack_a, t_stack *stack_b);
+void			process_argument(t_stack *stack_a, const char *arg);
+void			free_split(char **split);
+int				count_split(char **split);
 
 #endif
