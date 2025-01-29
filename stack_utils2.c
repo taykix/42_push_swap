@@ -6,7 +6,7 @@
 /*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:33:08 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/29 18:21:45 by tkarakay         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:25:10 by tkarakay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_stack(t_stack *stack)
 	}
 }
 
-void free_stacks(t_stack *stack_a, t_stack *stack_b)
+void	free_stacks(t_stack *stack_a, t_stack *stack_b)
 {
 	free_stack(stack_a);
 	free_stack(stack_b);
