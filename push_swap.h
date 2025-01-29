@@ -6,7 +6,7 @@
 /*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:35:18 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/26 18:36:27 by tkarakay         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:21:23 by tkarakay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void			print_stack(t_stack *stack);
 int				validate_and_convert(const char *arg);
 int				is_duplicate(t_stack *stack, int value);
 void			free_stack(t_stack *stack);
+void			free_stacks(t_stack *stack_a, t_stack *stack_b);
 void			swap(t_stack *stack);
 void			push_to(t_stack *dest, t_stack *src);
 void			rotate(t_stack *stack);

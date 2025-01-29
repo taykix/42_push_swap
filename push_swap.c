@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:32:58 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/25 18:18:19 by tayki            ###   ########.fr       */
+/*   Updated: 2025/01/29 18:22:42 by tkarakay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,34 @@ int	main(int argc, char **argv)
 	t_stack	stack_b;
 	int		value;
 
-	if (argc < 2)
+	if (argc < 2 || (argc == 2 && !*argv[1]))
 	{
 		ft_printf("Error\n");
+		free_stacks(&stack_a, &stack_b);
 		return (EXIT_FAILURE);
 	}
 	init_stack(&stack_a);
 	init_stack(&stack_b);
-	i = argc - 1;
-	while (i > 0)
+	if (argc == 2)
+		process_argument(&stack_a, argv[1]);
+	else
 	{
-		value = validate_and_convert(argv[i]);
-		if (!is_duplicate(&stack_a, value))
+		i = argc - 1;
+		while (i > 0)
 		{
-			push(&stack_a, value);
+			value = validate_and_convert(argv[i]);
+			if (!is_duplicate(&stack_a, value))
+				push(&stack_a, value);
+			else
+			{
+				ft_printf("Error\n");
+				free_stacks(&stack_a, &stack_b);
+				return (EXIT_FAILURE);
+			}
+			i--;
 		}
-		else
-		{
-			ft_printf("Error\n");
-			free_stack(&stack_a);
-			free_stack(&stack_b);
-			return (EXIT_FAILURE);
-		}
-		i--;
 	}
 	sort_big(&stack_a, &stack_b);
-	free_stack(&stack_a);
-	free_stack(&stack_b);
+	free_stacks(&stack_a, &stack_b);
 	return (EXIT_SUCCESS);
 }
