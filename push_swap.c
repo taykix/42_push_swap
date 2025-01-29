@@ -6,7 +6,7 @@
 /*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:32:58 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/29 18:26:53 by tkarakay         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:52:47 by tkarakay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ void	process_arguments(int argc, char **argv, t_stack *stack_a)
 	int	value;
 
 	if (argc == 2)
-	{
 		process_argument(stack_a, argv[1]);
-	}
 	else
 	{
 		i = argc - 1;
@@ -37,16 +35,41 @@ void	process_arguments(int argc, char **argv, t_stack *stack_a)
 		{
 			value = validate_and_convert(argv[i]);
 			if (!is_duplicate(stack_a, value))
-			{
 				push(stack_a, value);
-			}
 			else
 			{
-				handle_error(stack_a, NULL);
+				ft_printf("Error\n");
+				free_stack(stack_a);
+				exit(EXIT_FAILURE);
 			}
 			i--;
 		}
 	}
+}
+
+int	if_argument_digits(char **argv, int argc)
+{
+	int	i;
+	int	k;
+
+	k = 1;
+	while (k < argc)
+	{
+		i = 0;
+		while (argv[k][i] == ' ')
+			i++;
+		if (argv[k][i] == '\0')
+			return (0);
+		i = 0;
+		while (argv[k][i])
+		{
+			if (!ft_isdigit(argv[k][i]))
+				return (0);
+			i++;
+		}
+		k++;
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -55,6 +78,11 @@ int	main(int argc, char **argv)
 	t_stack	stack_b;
 
 	if (argc < 2 || (argc == 2 && !*argv[1]))
+	{
+		ft_printf("Error\n");
+		return (EXIT_FAILURE);
+	}
+	if (!if_argument_digits(argv, argc))
 	{
 		ft_printf("Error\n");
 		return (EXIT_FAILURE);
