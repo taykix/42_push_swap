@@ -38,6 +38,45 @@ int	validate_and_convert(const char *arg)
 	return ((int)value);
 }
 
+t_argument	*init_argument(t_argument *flags)
+{
+	flags->is_adaptive = 0;
+	flags->is_medium = 0;
+	flags->is_complex = 0;
+	flags->is_bench = 0;
+	flags->is_simple = 0;
+
+	return (flags);
+}
+
+t_argument	get_flags(int argc,	char** argv)
+{
+	t_argument flags;
+	int 	i;
+
+	init_argument(&flags);
+	i = 0;
+	if (argc < 2 || (argc == 2 && !*argv[1]))
+	{
+		ft_printf("Error\n");
+		exit(EXIT_FAILURE);
+	}
+	while (i < argc)
+	{
+		if (ft_strncmp(argv[i], "--simple", 8) == 0)
+			flags.is_simple = 1;
+		if (ft_strncmp(argv[i], "--medium", 8) == 0)
+			flags.is_medium = 1;
+		if (ft_strncmp(argv[i], "--complex", 9) == 0)
+			flags.is_complex = 1;
+		if (ft_strncmp(argv[i], "--adaptive", 10) == 0)
+			flags.is_adaptive = 1;
+		if (ft_strncmp(argv[i], "--bench", 7) == 0)
+			flags.is_bench = 1;
+	}
+	return (flags);
+}
+
 void	process_argument(t_stack *stack_a, const char *arg)
 {
 	char	**numbers;

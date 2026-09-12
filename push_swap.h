@@ -40,6 +40,16 @@ typedef struct Stack
 	int			element_count;
 }				t_stack;
 
+typedef struct Argument
+{
+	int	is_simple;
+	int	is_medium;
+	int is_complex;
+	int is_adaptive;
+	int is_bench;
+	int	element_count;
+}	t_argument;
+
 // Function prototypes
 t_node			*create_node(int data);
 void			init_stack(t_stack *stack);
@@ -80,5 +90,8 @@ void			sort_big(t_stack *stack_a, t_stack *stack_b);
 void			process_argument(t_stack *stack_a, const char *arg);
 void			free_split(char **split);
 int				count_split(char **split);
+t_argument		*init_argument(t_argument *flags);
+int				get_flags(int argc,	char** argv);
+int				check_flags(t_argument flags);
 
 #endif
