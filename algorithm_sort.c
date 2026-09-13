@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: takaraka <takaraka@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 19:32:28 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/26 15:28:29 by tkarakay         ###   ########.fr       */
+/*   Created: 2026/09/05 21:29:32 by takaraka          #+#    #+#             */
+/*   Updated: 2026/09/10 06:00:57 by takaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,19 @@
 void	sort_three(t_stack *stack)
 {
 	if (stack->head == find_max(stack))
-	{
-		rotate(stack);
-		ft_printf("ra\n");
-	}
+		op_ra(stack);
 	else if (stack->head->next == find_max(stack))
-	{
-		reverse_rotate(stack);
-		ft_printf("rra\n");
-	}
+		op_rra(stack);
 	if (!is_sorted(stack))
-	{
-		swap(stack);
-		ft_printf("sa\n");
-	}
+		op_sa(stack);
 }
 
-void	sort_big(t_stack *stack_a, t_stack *stack_b)
+void	sort_simple(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a->element_count > 3 && !is_sorted(stack_a))
-	{
-		push_to(stack_b, stack_a);
-		ft_printf("pb\n");
-	}
+		op_pb(stack_a, stack_b);
 	if (stack_a->element_count > 3 && !is_sorted(stack_a))
-	{
-		push_to(stack_b, stack_a);
-		ft_printf("pb\n");
-	}
+		op_pb(stack_a, stack_b);
 	while (stack_a->element_count > 3 && !is_sorted(stack_a))
 	{
 		get_stack_ready(stack_a, stack_b, 'a');

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: takaraka <takaraka@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 19:32:50 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/25 18:15:59 by tayki            ###   ########.fr       */
+/*   Created: 2026/09/05 12:56:15 by takaraka          #+#    #+#             */
+/*   Updated: 2026/09/12 13:14:29 by takaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,17 @@ void	economic_rotate(t_stack *stack_a, t_stack *stack_b)
 	if (cheapest_node->is_above_median && cheapest_node->target->is_above_median
 		&& cheapest_node->index != 0 && cheapest_node->target->index != 0)
 	{
-		rotate(stack_a);
+		op_rr(stack_a, stack_b);
 		set_indexes(stack_a);
-		rotate(stack_b);
 		set_indexes(stack_b);
-		ft_printf("rr\n");
 	}
 	else if (!cheapest_node->is_above_median
 		&& !cheapest_node->target->is_above_median && cheapest_node->index != 0
 		&& cheapest_node->target->index != 0)
 	{
-		reverse_rotate(stack_a);
+		op_rrr(stack_a, stack_b);
 		set_indexes(stack_a);
-		reverse_rotate(stack_b);
 		set_indexes(stack_b);
-		ft_printf("rrr\n");
 	}
 }
 
@@ -46,23 +42,13 @@ void	nodes_a_to_b(t_stack *stack_a, t_stack *stack_b)
 	economic_rotate(stack_a, stack_b);
 	if (rotate_node_to_top(stack_a, cheapest_node, 'a')
 		&& rotate_node_to_top(stack_b, cheapest_node->target, 'b'))
-	{
-		push_to(stack_b, stack_a);
-		ft_printf("pb\n");
-	}
-	else
-		ft_printf("EROR with rotating cheapest to top pa\n");
+		op_pb(stack_a, stack_b);
 }
 
 void	nodes_b_to_a(t_stack *stack_a, t_stack *stack_b)
 {
 	if (rotate_node_to_top(stack_a, stack_b->head->target, 'a'))
-	{
-		push_to(stack_a, stack_b);
-		ft_printf("pa\n");
-	}
-	else
-		ft_printf("EROR with rotating b's target to top\n");
+		op_pa(stack_a, stack_b);
 }
 
 void	get_stack_ready(t_stack *stack_a, t_stack *stack_b, char stack_name)

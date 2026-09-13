@@ -3,56 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkarakay <tkarakay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: takaraka <takaraka@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 19:32:58 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/29 19:52:47 by tkarakay         ###   ########.fr       */
+/*   Created: 2026/09/04 23:52:50 by takaraka          #+#    #+#             */
+/*   Updated: 2026/09/12 10:05:56 by takaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
 
-void	handle_error(t_stack *stack_a, t_stack *stack_b)
-{
-	ft_printf("Error\n");
-	free_stacks(stack_a, stack_b);
-	exit(EXIT_FAILURE);
-}
-
-void	process_arguments(int argc, char **argv, t_stack *stack_a)
+void	process_arguments(t_stack *stack_a, char **argv, int argc, int first)
 {
 	int	i;
-	int	value;
 
-	if (argc == 2)
-		process_argument(stack_a, argv[1]);
-	else
+	i = argc - 1;
+	while (i > first)
 	{
-		i = argc - 1;
-		while (i > 0)
-		{
-			value = validate_and_convert(argv[i]);
-			if (!is_duplicate(stack_a, value))
-				push(stack_a, value);
-			else
-			{
-				ft_printf("Error\n");
-				free_stack(stack_a);
-				exit(EXIT_FAILURE);
-			}
-			i--;
-		}
+		process_argument(stack_a, argv[i]);
+		i--;
 	}
 }
 
-int	if_argument_digits(char **argv, int argc)
+int	if_argument_digits(char **argv, int argc, int flag_count)
 {
 	int	i;
 	int	k;
 
-	k = 1;
+	k = flag_count + 1;
 	while (k < argc)
 	{
 		i = 0;
@@ -63,7 +40,8 @@ int	if_argument_digits(char **argv, int argc)
 		i = 0;
 		while (argv[k][i])
 		{
-			if (!ft_isdigit(argv[k][i]))
+			if (!ft_isdigit(argv[k][i]) && argv[k][i] != ' '
+				&& argv[k][i] != '-' && argv[k][i] != '+')
 				return (0);
 			i++;
 		}
@@ -74,23 +52,20 @@ int	if_argument_digits(char **argv, int argc)
 
 int	main(int argc, char **argv)
 {
-	t_stack	stack_a;
-	t_stack	stack_b;
+	t_stack		stack_a;
+	t_stack		stack_b;
+	t_counter	counter;
+	t_argument	flags;
+	int			flag_count;
 
-	if (argc < 2 || (argc == 2 && !*argv[1]))
-	{
-		ft_printf("Error\n");
-		return (EXIT_FAILURE);
-	}
-	if (!if_argument_digits(argv, argc))
-	{
-		ft_printf("Error\n");
-		return (EXIT_FAILURE);
-	}
-	init_stack(&stack_a);
-	init_stack(&stack_b);
-	process_arguments(argc, argv, &stack_a);
-	sort_big(&stack_a, &stack_b);
+	if (argc < 2)
+		return (EXIT_SUCCESS);
+	flag_count = check_arguments(argc, argv, &flags);
+	init_counter(&counter);
+	init_stack(&stack_a, &counter);
+	init_stack(&stack_b, &counter);
+	process_arguments(&stack_a, argv, argc, flag_count);
+	run_strategy(&stack_a, &stack_b, &flags);
 	free_stacks(&stack_a, &stack_b);
 	return (EXIT_SUCCESS);
 }

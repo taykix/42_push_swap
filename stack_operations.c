@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: takaraka <takaraka@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 19:33:02 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 19:33:02 by tayki            ###   ########.fr       */
+/*   Created: 2026/09/11 02:15:34 by takaraka          #+#    #+#             */
+/*   Updated: 2026/09/13 02:36:55 by takaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,25 @@ void	swap(t_stack *stack)
 
 void	push_to(t_stack *dest, t_stack *src)
 {
-	int	value;
+	t_node	*node;
 
 	if (is_empty(src))
-	{
 		return ;
-	}
-	value = pop(src);
-	push(dest, value);
-	set_indexes(dest);
-	set_indexes(src);
+	node = src->head;
+	src->head = node->next;
+	if (src->head != NULL)
+		src->head->prev = NULL;
+	else
+		src->tail = NULL;
+	src->element_count--;
+	node->prev = NULL;
+	node->next = dest->head;
+	if (dest->head != NULL)
+		dest->head->prev = node;
+	else
+		dest->tail = node;
+	dest->head = node;
+	dest->element_count++;
 }
 
 void	rotate(t_stack *stack)

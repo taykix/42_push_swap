@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm_utils4.c                                 :+:      :+:    :+:   */
+/*   operations3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takaraka <takaraka@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/08 02:02:27 by takaraka          #+#    #+#             */
-/*   Updated: 2026/09/10 18:44:46 by takaraka         ###   ########.fr       */
+/*   Created: 2026/08/30 13:44:49 by takaraka          #+#    #+#             */
+/*   Updated: 2026/09/03 18:33:45 by takaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rotate_node_to_top(t_stack *stack, t_node *node_for_top, char stack_name)
+void	op_rrr(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*node;
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
+	ft_printf("rrr\n");
+	stack_a->counter->rrr++;
+}
 
-	node = node_for_top;
-	while (node->index != 0)
-	{
-		if (node->is_above_median && stack_name == 'a')
-			op_ra(stack);
-		else if (node->is_above_median)
-			op_rb(stack);
-		else if (stack_name == 'a')
-			op_rra(stack);
-		else
-			op_rrb(stack);
-		set_indexes(stack);
-	}
-	if (node->index == 0)
-		return (1);
-	else
-		return (0);
+void	init_counter(t_counter *counter)
+{
+	ft_bzero(counter, sizeof(t_counter));
 }

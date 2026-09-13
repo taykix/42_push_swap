@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayki <tayki@student.42.fr>                +#+  +:+       +#+        */
+/*   By: takaraka <takaraka@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 19:33:05 by tayki             #+#    #+#             */
-/*   Updated: 2025/01/24 19:36:22 by tayki            ###   ########.fr       */
+/*   Created: 2026/08/31 15:24:13 by takaraka          #+#    #+#             */
+/*   Updated: 2026/09/10 13:55:14 by takaraka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ t_node	*create_node(int data)
 	new_node->is_above_median = -1;
 	new_node->is_cheapest = 0;
 	new_node->push_cost = -1;
+	new_node->rank = -1;
 	return (new_node);
 }
 
-void	init_stack(t_stack *stack)
+void	init_stack(t_stack *stack, t_counter *counter)
 {
 	stack->head = NULL;
 	stack->tail = NULL;
 	stack->element_count = 0;
+	stack->counter = counter;
 }
 
 int	insert_before_head(t_stack *stack, int data)

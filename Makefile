@@ -7,6 +7,14 @@ SRCS = push_swap.c \
        algorithm_utils3.c \
        algorithm_utils4.c \
        argument_check_utils.c \
+       argument_check_utils2.c \
+       operations.c \
+       operations2.c \
+       operations3.c \
+       sort_medium.c \
+       sort_complex.c \
+       strategy.c \
+       bench.c \
        stack_operations.c \
        stack_utils.c \
        stack_utils2.c
